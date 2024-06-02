@@ -11,6 +11,19 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    flatDir {
+        dirs 'C:/Users/Abdel/Downloads'
+    }
+    maven {
+        url "https://maven.shedaniel.me"
+        content {
+            includeGroup "me.sargunvohra.mcmods"
+            includeGroup "me.shedaniel.cloth"
+            includeGroup "me.shedaniel"
+            includeGroup "dev.architectury"
+        }
+    }
+
 }
 
 base {
@@ -20,7 +33,7 @@ base {
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-//minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
 
 // Default run configurations.
@@ -88,6 +101,10 @@ dependencies {
     // And its provides the option to then use net.minecraft as the group, and one of; client, server or joined as the module name, plus the game version as version.
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation name: "Modern-Industrialization-2.0.21-all"
+
+    runtimeOnly("me.shedaniel.cloth:cloth-config-neoforge:13.0.121")
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
