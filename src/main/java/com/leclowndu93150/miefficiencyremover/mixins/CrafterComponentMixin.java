@@ -42,7 +42,7 @@ public abstract class CrafterComponentMixin {
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))
-    private void readNbt(net.minecraft.nbt.CompoundTag tag, boolean isUpgradingMachine, CallbackInfo ci) {
+    private void readNbt(net.minecraft.nbt.CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries, boolean isUpgradingMachine, CallbackInfo ci) {
         efficiencyTicks = maxEfficiencyTicks;
     }
 }
