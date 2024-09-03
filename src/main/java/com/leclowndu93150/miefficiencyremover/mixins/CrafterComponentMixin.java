@@ -1,6 +1,8 @@
 package com.leclowndu93150.miefficiencyremover.mixins;
 
 import aztech.modern_industrialization.machines.components.CrafterComponent;
+import aztech.modern_industrialization.machines.recipe.MachineRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,6 +15,9 @@ public abstract class CrafterComponentMixin {
 
     @Shadow private int efficiencyTicks;
     @Shadow private int maxEfficiencyTicks;
+    @Shadow private long recipeEnergy;
+    @Shadow private long usedEnergy;
+    @Shadow private RecipeHolder<MachineRecipe> activeRecipe = null;
 
     @Inject(method = "decreaseEfficiencyTicks", at = @At("HEAD"), cancellable = true)
     private void decreaseEfficiencyTicks(CallbackInfo ci) {
@@ -26,7 +31,14 @@ public abstract class CrafterComponentMixin {
 
     @Inject(method = "tickRecipe", at = @At("HEAD"))
     private void tickRecipe(CallbackInfoReturnable<Boolean> cir) {
-        efficiencyTicks = maxEfficiencyTicks;
+        if (activeRecipe != null) {
+            if (usedEnergy == 0) {
+                efficiencyTicks = 0;
+            }
+            if (usedEnergy > 0) {
+                efficiencyTicks = maxEfficiencyTicks;
+            }
+        }
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))

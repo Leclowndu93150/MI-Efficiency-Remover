@@ -102,7 +102,7 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation name: "Modern-Industrialization-2.0.21-all"
+    implementation name: "Modern-Industrialization-2.0.25-all"
 
     runtimeOnly("me.shedaniel.cloth:cloth-config-neoforge:13.0.121")
 
