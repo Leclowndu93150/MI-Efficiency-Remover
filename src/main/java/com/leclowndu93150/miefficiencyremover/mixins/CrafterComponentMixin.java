@@ -15,7 +15,6 @@ public abstract class CrafterComponentMixin {
 
     @Shadow private int efficiencyTicks;
     @Shadow private int maxEfficiencyTicks;
-    @Shadow private long recipeEnergy;
     @Shadow private long usedEnergy;
     @Shadow private RecipeHolder<MachineRecipe> activeRecipe = null;
 
