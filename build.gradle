@@ -9,10 +9,12 @@ plugins {
 version = mod_version
 group = mod_group_id
 
+//repositories.clear()
 repositories {
     mavenLocal()
+    maven { url = 'https://mirrors.imucraft.cn/neoforge/releases' }
     flatDir {
-        dirs 'C:/Users/Abdel/Downloads'
+        dirs 'C:/Users/25843/Desktop/MI-Efficiency-Remover/.gradle/repositories/'
     }
     maven {
         url "https://maven.shedaniel.me"
@@ -23,7 +25,10 @@ repositories {
             includeGroup "dev.architectury"
         }
     }
-
+    maven { url = "https://libraries.minecraft.net/" }
+    maven { url = "https://neoforged.forgecdn.net/releases" }
+    maven { url = "https://neoforged.forgecdn.net/mojang-meta" }
+    //mavenCentral()
 }
 
 base {
@@ -33,11 +38,12 @@ base {
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+//minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
 
 // Default run configurations.
 // These can be tweaked, removed, or duplicated as needed.
+
 runs {
     // applies to all the run configs below
     configureEach {
@@ -102,7 +108,9 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation name: "Modern-Industrialization-2.2.18-beta"
+    implementation files("libs/Modern-Industrialization-2.3.10.jar")
+    //implementation files("libs/extended-industrialization-1.15.0-1.21.1.jar")
+    implementation files("libs/tesseract-api-neoforge-1.8.16-1.21.1.jar")
 
     runtimeOnly("me.shedaniel.cloth:cloth-config-neoforge:15.0.130")
 
