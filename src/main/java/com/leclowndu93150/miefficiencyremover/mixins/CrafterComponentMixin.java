@@ -30,14 +30,7 @@ public abstract class CrafterComponentMixin {
 
     @Inject(method = "tickRecipe", at = @At("HEAD"))
     private void tickRecipe(CallbackInfoReturnable<Boolean> cir) {
-        if (activeRecipe != null) {
-            if (usedEnergy == 0) {
-                efficiencyTicks = 0;
-            }
-            if (usedEnergy > 0) {
-                efficiencyTicks = maxEfficiencyTicks;
-            }
-        }
+        efficiencyTicks = maxEfficiencyTicks;
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))

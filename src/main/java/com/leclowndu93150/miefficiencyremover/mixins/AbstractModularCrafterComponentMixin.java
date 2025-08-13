@@ -1,5 +1,6 @@
 package com.leclowndu93150.miefficiencyremover.mixins;
 
+
 import aztech.modern_industrialization.machines.IComponent;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import net.minecraft.world.item.crafting.Recipe;
@@ -20,6 +21,7 @@ public abstract class AbstractModularCrafterComponentMixin<R> {
     @Shadow private int maxEfficiencyTicks;
     @Shadow private long usedEnergy;
     @Shadow private R activeRecipe = null;
+
 
     @Inject(method = "decreaseEfficiencyTicks", at = @At("HEAD"), cancellable = true)
     private void decreaseEfficiencyTicks(CallbackInfo ci) {
